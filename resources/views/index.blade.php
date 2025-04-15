@@ -15,14 +15,14 @@
         class="flex md:justify-between justify-center bg-[#4291B0] text-white fixed top-0 w-full z-10 p-2 md:p-3 rounded-lg rounded-t-none">
         <p class="hidden md:flex md:text-xl font-bold">ToList Me</p>
         <div class="flex space-x-5 justify-center items-center">
-            <a href="" class="font-normal hover:font-semibold text-md lg:text-lg">Home</a>
-            <a href="" class="font-normal hover:font-semibold text-md lg:text-lg">About us</a>
-            <a href="" class="font-normal hover:font-semibold text-md lg:text-lg">Task</a>
+            <a href="#home" class="font-normal hover:font-semibold text-md lg:text-lg">Home</a>
+            <a href="#about" class="font-normal hover:font-semibold text-md lg:text-lg">About us</a>
+            <a href="#task" class="font-normal hover:font-semibold text-md lg:text-lg">Task</a>
         </div>
         <div></div>
     </nav>
     <div class="container mx-auto p-3 mt-10 flex flex-col ">
-        <div class="flex flex-col md:flex-row md:justify-between items-center gap-5">
+        <div class="flex flex-col md:flex-row md:justify-between items-center gap-5" id="home">
             <div class="space-y-2 flex-col ">
                 <p class="text-sm lg:text-lg font-light font-sans">⭐ Start your productivity journey today</p>
                 <h1 class="text-lg lg:text-2xl font-semibold font-sans">Where every Task is a new Achievement</h1>
@@ -50,7 +50,7 @@
                 <p class="text-sm font-light">Add tasks, organize them into lists, and track your progress.</p>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row md:justify-between items-center md:space-x-15 mt-5 gap-5">
+        <div class="flex flex-col md:flex-row md:justify-between items-center md:space-x-15 mt-5 gap-5" id="about">
             <div>
                 <h1 class="text-lg font-semibold mb-2"># About this To - Do</h1>
                 <p class="text-sm font-light text-justify lg:text-lg">This simple to-do list is designed to help you
@@ -74,7 +74,7 @@
             </div>
 
 
-            <div class="w-full overflow-hidden ">
+            <div class="w-full overflow-hidden" id="task">
                 <div class="w-full overflow-x-auto">
                     <table class="w-full">
                         <thead>
