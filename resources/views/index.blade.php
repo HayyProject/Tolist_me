@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    @include('modal.modal_create')
     <nav
         class="flex md:justify-between justify-center bg-[#4291B0] text-white fixed top-0 w-full z-10 p-2 md:p-3 rounded-lg rounded-t-none">
         <p class="hidden md:flex md:text-xl font-bold">ToList Me</p>
@@ -67,9 +68,11 @@
         <div class="flex flex-col mt-5">
             <div class="flex flex-row justify-between items-center">
                 <h1 class="text-lg font-normal">Semua Tugas</h1>
-                <button class="px-4 py-2 rounded-full border border-gray-700 active:bg-gray-700 active:text-white text-sm md:text-md" onclick="toggleModal()">Tambah Task</button>
+                <button
+                    class="px-4 py-2 rounded-full border border-gray-700 active:bg-gray-700 active:text-white text-sm md:text-md"
+                    onclick="toggleModal()">Tambah Task</button>
             </div>
-    @include('modal.modal_create')
+
 
             <div class="w-full overflow-hidden ">
                 <div class="w-full overflow-x-auto">
@@ -123,10 +126,13 @@
                                         <td class="px-4 py-3 text-sm border border-gray-400">
                                             <div class="flex justify-start gap-2 text-md">
                                                 <button
-                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
                                                 <button
                                                     class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
                                             </div>
+                                            @include('modal.modal_edit', ['todo' => $todo])
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -193,10 +199,13 @@
                                         <td class="px-4 py-3 text-sm border border-gray-400">
                                             <div class="flex justify-start gap-2 text-md">
                                                 <button
-                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
                                                 <button
                                                     class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
                                             </div>
+                                            @include('modal.modal_edit', ['todo' => $todo])
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -263,10 +272,13 @@
                                     <td class="px-4 py-3 text-sm border border-gray-400">
                                         <div class="flex justify-start gap-2 text-md">
                                             <button
-                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
                                             <button
                                                 class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
                                         </div>
+                                        @include('modal.modal_edit', ['todo' => $todo])
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -332,10 +344,15 @@
                                     <td class="px-4 py-3 text-sm border border-gray-400">
                                         <div class="flex justify-start gap-2 text-md">
                                             <button
-                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+
+
                                             <button
                                                 class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
                                         </div>
+                                        @include('modal.modal_edit', ['todo' => $todo])
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -349,13 +366,15 @@
                 </table>
             </div>
         </div>
-        
     </div>
+
     <div class="w-full p-4 lg:py-5  bg-[#4291B0] mt-5">
         <div class="flex flex-col md:flex-row md:justify-between gap-5 md:gap-10 mditems-center xl:px-15">
             <div class="flex flex-col text-white text-md space-y-2 ">
                 <h1 class="font-semibold text-lg">ToList Me</h1>
-                <p class="">This simple to-do list is designed to help you stay focused, organized, and motivated. It’s a space to plan your day, track progress, and celebrate every small win. Whether it’s a big project or a quick reminder, everything starts with writing it down.</p>
+                <p class="">This simple to-do list is designed to help you stay focused, organized, and
+                    motivated. It’s a space to plan your day, track progress, and celebrate every small win. Whether
+                    it’s a big project or a quick reminder, everything starts with writing it down.</p>
             </div>
             <div class="flex flex-col md:flex-row space-x-5 md:items-center md:mb-5 gap-5 ">
                 <div class="flex flex-col text-start text-white gap-3">
@@ -376,20 +395,21 @@
         </div>
         <p class="text-center text-white text-sm md:text-md border-t">Copyright &copy; 2023, All Right Reserved</p>
     </div>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-            integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous">
-        </script>
-        @if ($errors->any())
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+        integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous">
+    </script>
+    @if ($errors->any())
         <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            toggleModal();
-          });
+            document.addEventListener('DOMContentLoaded', () => {
+                toggleModal();
+                toggleModalEdit()
+            });
         </script>
-        @endif
-        
+    @endif
+
     <script>
         function confirmDelete(id, name) {
             if (confirm(`Apakah Anda yakin ingin menghapus todo "${name}"?`)) {
