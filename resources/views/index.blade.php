@@ -126,10 +126,19 @@
                                         <td class="px-4 py-3 text-sm border border-gray-400">
                                             <div class="flex justify-start gap-2 text-md">
                                                 <button
-    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                                <button
-                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+                                                    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button"
+                                                            onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
+                                                            class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
+                                                            Delete
+                                                        </button>
+                                                        @include('modal.modal_delete')
+    
+                                                    </form>
                                             </div>
                                             @include('modal.modal_edit', ['todo' => $todo])
 
@@ -199,10 +208,19 @@
                                         <td class="px-4 py-3 text-sm border border-gray-400">
                                             <div class="flex justify-start gap-2 text-md">
                                                 <button
-    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                                <button
-                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+                                                    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button"
+                                                            onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
+                                                            class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
+                                                            Delete
+                                                        </button>
+                                                        @include('modal.modal_delete')
+    
+                                                    </form>
                                             </div>
                                             @include('modal.modal_edit', ['todo' => $todo])
 
@@ -272,10 +290,19 @@
                                     <td class="px-4 py-3 text-sm border border-gray-400">
                                         <div class="flex justify-start gap-2 text-md">
                                             <button
-    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                            <button
-                                                class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+                                                onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button"
+                                                        onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
+                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
+                                                        Delete
+                                                    </button>
+                                                    @include('modal.modal_delete')
+
+                                                </form>
                                         </div>
                                         @include('modal.modal_edit', ['todo' => $todo])
 
@@ -344,15 +371,22 @@
                                     <td class="px-4 py-3 text-sm border border-gray-400">
                                         <div class="flex justify-start gap-2 text-md">
                                             <button
-    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+                                                onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button"
+                                                        onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
+                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
+                                                        Delete
+                                                    </button>
+                                                    @include('modal.modal_delete')
 
-
-                                            <button
-                                                class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                                </form>
+                                                
                                         </div>
                                         @include('modal.modal_edit', ['todo' => $todo])
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -411,11 +445,24 @@
     @endif
 
     <script>
-        function confirmDelete(id, name) {
-            if (confirm(`Apakah Anda yakin ingin menghapus todo "${name}"?`)) {
-                document.getElementById(`delete-form-${id}`).submit();
-            }
-        }
+       let selectedTodoId = null;
+
+function showDeleteModal(id, title) {
+    selectedTodoId = id;
+    document.getElementById('deleteItemName').textContent = title;
+    document.getElementById('deleteModal').classList.remove('hidden');
+}
+
+function closeDeleteModal() {
+    selectedTodoId = null;
+    document.getElementById('deleteModal').classList.add('hidden');
+}
+
+function submitDelete() {
+    if (selectedTodoId !== null) {
+        document.getElementById('delete-form-' + selectedTodoId).submit();
+    }
+}
     </script>
 </body>
 
