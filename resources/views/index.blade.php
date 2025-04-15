@@ -25,7 +25,8 @@
             <div class="space-y-2 flex-col ">
                 <p class="text-sm lg:text-lg font-light font-sans">⭐ Start your productivity journey today</p>
                 <h1 class="text-lg lg:text-2xl font-semibold font-sans">Where every Task is a new Achievement</h1>
-                <p class="text-sm lg:text-lg font-light font-sans text text-justify">Welcome to your to-do list, where progress
+                <p class="text-sm lg:text-lg font-light font-sans text text-justify">Welcome to your to-do list, where
+                    progress
                     begins
                     one task at a time. Organize your goals, stay inspired, and transform your day with small wins.
                     Let’s
@@ -39,13 +40,29 @@
             <div class="w-full bg-[#98DCEE] text-center text-gray-700 p-7 md:rounded-l-lg  space-y-2">
                 <p>1</p>
                 <h1 class="font-semibold md:text-lg">Clear Your Task</h1>
-                <p class="text-sm font-light">Set up task Table for your project tasks with customizable backgrounds.</p>
+                <p class="text-sm font-light">Set up task Table for your project tasks with customizable backgrounds.
+                </p>
             </div>
             <div class="w-full bg-red-200 text-center text-gray-700 p-7 md:rounded-r-lg  space-y-2">
                 <p>2</p>
                 <h1 class="font-semibold md:text-lg">Start Managing Tasks</h1>
                 <p class="text-sm font-light">Add tasks, organize them into lists, and track your progress.</p>
             </div>
+        </div>
+        <div class="flex flex-col md:flex-row md:justify-between items-center space-x-15 mt-5">
+            <div>
+                <h1 class="text-lg font-semibold mb-2"># About this To - Do</h1>
+                <p class="text-sm font-light text-justify lg:text-lg">This simple to-do list is designed to help you
+                    stay focused, organized, and motivated. It’s a space to plan your day, track progress, and celebrate
+                    every small win. Whether it’s a big project or a quick reminder, everything starts with writing it
+                    down.</p>
+            </div>
+            <div class="md:max-w-md w-full">
+                <img src="{{ asset('images/todo.png') }}" alt="" class="w-full">
+            </div>
+        </div>
+        <div class="w-full bg-[#4291B0] p-3 text-center text-white mt-5 rounded-lg">
+            <p class="text-sm md:text-lg">Okay Now Let’s Go to My To-Do</p>
         </div>
     </div>
 
