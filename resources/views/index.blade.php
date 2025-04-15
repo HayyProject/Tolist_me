@@ -49,7 +49,7 @@
                 <p class="text-sm font-light">Add tasks, organize them into lists, and track your progress.</p>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row md:justify-between items-center space-x-15 mt-5">
+        <div class="flex flex-col md:flex-row md:justify-between items-center md:space-x-15 mt-5 gap-5">
             <div>
                 <h1 class="text-lg font-semibold mb-2"># About this To - Do</h1>
                 <p class="text-sm font-light text-justify lg:text-lg">This simple to-do list is designed to help you
@@ -64,12 +64,13 @@
         <div class="w-full bg-[#4291B0] p-3 text-center text-white mt-5 rounded-lg">
             <p class="text-sm md:text-lg">Okay Now Let’s Go to My To-Do</p>
         </div>
-
         <div class="flex flex-col mt-5">
             <div class="flex flex-row justify-between items-center">
                 <h1 class="text-lg font-normal">Semua Tugas</h1>
-                <button class="px-4 py-2 rounded-full border border-gray-700 active:bg-gray-700 active:text-white text-sm md:text-md" data-bs-toggle="modal" data-bs-target="#create-list">Tambah Task</button>
+                <button class="px-4 py-2 rounded-full border border-gray-700 active:bg-gray-700 active:text-white text-sm md:text-md" onclick="toggleModal()">Tambah Task</button>
             </div>
+    @include('modal.modal_create')
+
             <div class="w-full overflow-hidden ">
                 <div class="w-full overflow-x-auto">
                     <table class="w-full">
@@ -375,7 +376,27 @@
         </div>
         <p class="text-center text-white text-sm md:text-md border-t">Copyright &copy; 2023, All Right Reserved</p>
     </div>
-
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+            integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous">
+        </script>
+        @if ($errors->any())
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            toggleModal();
+          });
+        </script>
+        @endif
+        
+    <script>
+        function confirmDelete(id, name) {
+            if (confirm(`Apakah Anda yakin ingin menghapus todo "${name}"?`)) {
+                document.getElementById(`delete-form-${id}`).submit();
+            }
+        }
+    </script>
 </body>
 
 </html>
