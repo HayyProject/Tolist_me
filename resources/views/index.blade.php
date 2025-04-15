@@ -71,8 +71,7 @@
                 <div class="w-full overflow-x-auto">
                     <table class="w-full">
                         <thead>
-                            <tr
-                                class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
+                            <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
                                 <th class="px-4 py-3">Nama</th>
                                 <th class="px-4 py-3">Deskripsi</th>
                                 <th class="px-4 py-3">Status</th>
@@ -82,106 +81,57 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-                            <tr class="text-gray-700 ">
-                                <td class="px-4 py-3 border border-gray-400">
-                                    Project Laravel To Do List dengan menggunakan javascript
-                                </td>
-                                <td class="px-4 py-3 text-ms  border border-gray-400">Membuat Project To Do list dengan Tailwind dan laravel</td>
-                                <td class="px-4 py-3 text-xs border border-gray-400">
-                                    <span
-                                        class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
-                                        Selesai </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">
-                                    <div class="flex justify-start gap-2 text-md">
-                                      <button class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
-                                      <button class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
-                                    </div>
-                                  </td>
-                                  
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <h1 class="mt-5 text-lg font-normal">Sedang Berjalan</h1>
-            <div class="w-full overflow-hidden ">
-                <div class="w-full overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr
-                                class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
-                                <th class="px-4 py-3">Nama</th>
-                                <th class="px-4 py-3">Deskripsi</th>
-                                <th class="px-4 py-3">Status</th>
-                                <th class="px-4 py-3">Tanggal Mulai</th>
-                                <th class="px-4 py-3">Deadline</th>
-                                <th class="px-4 py-3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            <tr class="text-gray-700 ">
-                                <td class="px-4 py-3 border border-gray-400">
-                                    Project Laravel To Do List dengan menggunakan javascript
-                                </td>
-                                <td class="px-4 py-3 text-ms  border border-gray-400">Membuat Project To Do list dengan Tailwind dan laravel</td>
-                                <td class="px-4 py-3 text-xs border border-gray-400">
-                                    <span
-                                        class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
-                                        Selesai </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">
-                                    <div class="flex justify-start gap-2 text-md">
-                                      <button class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
-                                      <button class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
-                                    </div>
-                                  </td>
-                                  
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <h1 class="mt-5 text-lg font-normal">Selesai</h1>
-            <div class="w-full overflow-hidden ">
-                <div class="w-full overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr
-                                class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
-                                <th class="px-4 py-3">Nama</th>
-                                <th class="px-4 py-3">Deskripsi</th>
-                                <th class="px-4 py-3">Status</th>
-                                <th class="px-4 py-3">Tanggal Mulai</th>
-                                <th class="px-4 py-3">Deadline</th>
-                                <th class="px-4 py-3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            <tr class="text-gray-700 ">
-                                <td class="px-4 py-3 border border-gray-400 ">
-                                    Project Laravel To Do List dengan menggunakan javascript
-                                </td>
-                                <td class="px-4 py-3 text-ms  border border-gray-400">Membuat Project To Do list dengan Tailwind dan laravel</td>
-                                <td class="px-4 py-3 text-xs border border-gray-400">
-                                    <span
-                                        class="px-3 py-2 font-semibold leading-tight text-white bg-[#64748B] rounded-lg flex justify-start">
-                                        Berjalan </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">
-                                    <div class="flex justify-start gap-2 text-md">
-                                      <button class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
-                                      <button class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
-                                    </div>
-                                  </td>
-                                  
-                            </tr>
+                            @if (isset($todos) && count($todos) > 0)
+                                @foreach ($todos as $todo)
+                                    <tr class="text-gray-700 ">
+                                        <td class="px-4 py-3 border border-gray-400">
+                                            {{ $todo->title }}
+                                        </td>
+                                        <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
+                                        </td>
+                                        <td class="px-4 py-3 text-xs border border-gray-400">
+                                            @switch($todo->status)
+                                                @case('pending')
+                                                    <span
+                                                        class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg">
+                                                        {{ $todo->status }}
+                                                    </span>
+                                                @break
+
+                                                @case('in_progress')
+                                                    <span
+                                                        class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
+                                                        {{ $todo->status }}
+                                                    </span>
+                                                @break
+
+                                                @case('completed')
+                                                    <span
+                                                        class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
+                                                        {{ $todo->status }}
+                                                    </span>
+                                                @break
+                                            @endswitch
+                                        </td>
+                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
+                                        <td class="px-4 py-3 text-sm border border-gray-400">
+                                            <div class="flex justify-start gap-2 text-md">
+                                                <button
+                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+                                                <button
+                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr class="text-gray-700 ">
+                                    <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
+                                        ada/belum dibuat</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -191,8 +141,7 @@
                 <div class="w-full overflow-x-auto">
                     <table class="w-full">
                         <thead>
-                            <tr
-                                class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
+                            <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
                                 <th class="px-4 py-3">Nama</th>
                                 <th class="px-4 py-3">Deskripsi</th>
                                 <th class="px-4 py-3">Status</th>
@@ -202,33 +151,202 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-                            <tr class="text-gray-700 ">
-                                <td class="px-4 py-3 border border-gray-400">
-                                    Project Laravel To Do List dengan menggunakan javascript
-                                </td>
-                                <td class="px-4 py-3 text-ms  border border-gray-400">Membuat Project To Do list dengan Tailwind dan laravel</td>
-                                <td class="px-4 py-3 text-xs border border-gray-400">
-                                    <span
-                                        class="px-3 py-2 font-semibold leading-tight text-gray-500 bg-[#E2E8F0] rounded-lg flex  justify-start ">
-                                        Belum Mulai </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">2025-02-15 20:28:01</td>
-                                <td class="px-4 py-3 text-sm border border-gray-400">
-                                    <div class="flex justify-start gap-2 text-md">
-                                      <button class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
-                                      <button class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
-                                    </div>
-                                  </td>
-                                  
-                            </tr>
+                            @if (isset($notStart) && count($notStart) > 0)
+                                @foreach ($notStart as $todo)
+                                    <tr class="text-gray-700 ">
+                                        <td class="px-4 py-3 border border-gray-400">
+                                            {{ $todo->title }}
+                                        </td>
+                                        <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
+                                        </td>
+                                        <td class="px-4 py-3 text-xs border border-gray-400">
+                                            @switch($todo->status)
+                                                @case('pending')
+                                                    <span
+                                                        class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg">
+                                                        {{ $todo->status }}
+                                                    </span>
+                                                @break
+
+                                                @case('in_progress')
+                                                    <span
+                                                        class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
+                                                        {{ $todo->status }}
+                                                    </span>
+                                                @break
+
+                                                @case('completed')
+                                                    <span
+                                                        class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
+                                                        {{ $todo->status }}
+                                                    </span>
+                                                @break
+                                            @endswitch
+                                        </td>
+                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
+                                        <td class="px-4 py-3 text-sm border border-gray-400">
+                                            <div class="flex justify-start gap-2 text-md">
+                                                <button
+                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+                                                <button
+                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr class="text-gray-700 ">
+                                    <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
+                                        ada/belum dibuat</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <h1 class="mt-5 text-lg font-normal">Sedang Berjalan</h1>
+        <div class="w-full overflow-hidden ">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
+                            <th class="px-4 py-3">Nama</th>
+                            <th class="px-4 py-3">Deskripsi</th>
+                            <th class="px-4 py-3">Status</th>
+                            <th class="px-4 py-3">Tanggal Mulai</th>
+                            <th class="px-4 py-3">Deadline</th>
+                            <th class="px-4 py-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @if (isset($willStart) && count($willStart) > 0)
+                            @foreach ($willStart as $todo)
+                                <tr class="text-gray-700 ">
+                                    <td class="px-4 py-3 border border-gray-400">
+                                        {{ $todo->title }}
+                                    </td>
+                                    <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
+                                    </td>
+                                    <td class="px-4 py-3 text-xs border border-gray-400">
+                                        @switch($todo->status)
+                                            @case('pending')
+                                                <span
+                                                    class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg">
+                                                    {{ $todo->status }}
+                                                </span>
+                                            @break
+
+                                            @case('in_progress')
+                                                <span
+                                                    class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
+                                                    {{ $todo->status }}
+                                                </span>
+                                            @break
+
+                                            @case('completed')
+                                                <span
+                                                    class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
+                                                    {{ $todo->status }}
+                                                </span>
+                                            @break
+                                        @endswitch
+                                    </td>
+                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}</td>
+                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
+                                    <td class="px-4 py-3 text-sm border border-gray-400">
+                                        <div class="flex justify-start gap-2 text-md">
+                                            <button
+                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+                                            <button
+                                                class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-gray-700 ">
+                                <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
+                                    ada/belum dibuat</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h1 class="mt-5 text-lg font-normal">Selesai</h1>
+        <div class="w-full overflow-hidden ">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
+                            <th class="px-4 py-3">Nama</th>
+                            <th class="px-4 py-3">Deskripsi</th>
+                            <th class="px-4 py-3">Status</th>
+                            <th class="px-4 py-3">Tanggal Mulai</th>
+                            <th class="px-4 py-3">Deadline</th>
+                            <th class="px-4 py-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @if (isset($finished) && count($finished) > 0)
+                            @foreach ($finished as $todo)
+                                <tr class="text-gray-700 ">
+                                    <td class="px-4 py-3 border border-gray-400 ">
+                                        {{ $todo->title }}
+                                    </td>
+                                    <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
+                                    </td>
+                                    <td class="px-4 py-3 text-xs border border-gray-400">
+                                        @switch($todo->status)
+                                            @case('pending')
+                                                <span
+                                                    class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg">
+                                                    {{ $todo->status }}
+                                                </span>
+                                            @break
+
+                                            @case('in_progress')
+                                                <span
+                                                    class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
+                                                    {{ $todo->status }}
+                                                </span>
+                                            @break
+
+                                            @case('completed')
+                                                <span
+                                                    class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
+                                                    {{ $todo->status }}
+                                                </span>
+                                            @break
+                                        @endswitch
+                                    </td>
+                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}</td>
+                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
+                                    <td class="px-4 py-3 text-sm border border-gray-400">
+                                        <div class="flex justify-start gap-2 text-md">
+                                            <button
+                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white">Edit</button>
+                                            <button
+                                                class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-gray-700 ">
+                                <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
+                                    ada/belum dibuat</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div>
-            
+
         </div>
     </div>
 
