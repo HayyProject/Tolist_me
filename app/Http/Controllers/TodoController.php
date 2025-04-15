@@ -13,7 +13,7 @@ class TodoController extends Controller
     public function index()
     {
         $todos = Todo::all();
-        $willStart = Todo::where('start_date', '>', now())->get();
+        $willStart = Todo::where('start_date', '>=', now()->copy()->subDay())->get();
         $notStart = Todo::where('start_date', '<=', now())->where('end_date', '>', now())->get();
         $finished = Todo::where('end_date', '<', now())->get();
         return view('index', compact('todos', 'willStart', 'notStart', 'finished'));
