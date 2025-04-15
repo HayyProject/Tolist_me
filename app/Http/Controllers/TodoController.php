@@ -12,15 +12,11 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $todos = Todo::all();
+        $willStart = Todo::where('start_date', '>', now())->get();
+        $notStart = Todo::where('start_date', '<=', now())->where('end_date', '>', now())->get();
+        $finished = Todo::where('end_date', '<', now())->get();
+        return view('index', compact('todos', 'willStart', 'notStart', 'finished'));
     }
 
     /**
@@ -28,23 +24,17 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:pending,in_progress,completed',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Todo $todo)
-    {
-        //
-    }
+        Todo::create($validatedData);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Todo $todo)
-    {
-        //
+        return redirect()->route('todos.index')->with('success', 'Todo created successfully.');
     }
 
     /**
@@ -52,7 +42,17 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:pending,in_progress,completed',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $todo->update($validatedData);
+
+        return redirect()->route('todos.index')->with('success', 'Todo updated successfully.');
     }
 
     /**
@@ -60,6 +60,9 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+
+        return redirect()->back()->with('success', 'Todo deleted successfully.');
     }
 }
+

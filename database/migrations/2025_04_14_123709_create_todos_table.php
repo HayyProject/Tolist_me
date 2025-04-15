@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->enum('status', ['pending', 'in_progress','completed'])->default('pending');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
