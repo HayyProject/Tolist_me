@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -128,17 +129,17 @@
                                                 <button
                                                     class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
                                                     onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button"
-                                                            onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
-                                                            class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
-                                                            Delete
-                                                        </button>
-                                                        @include('modal.modal_delete')
-    
-                                                    </form>
+
+                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
+                                                    class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button"
+                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
+                                                        onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
+                                                        Delete
+                                                    </button>
+                                                </form>
                                             </div>
                                             @include('modal.modal_edit', ['todo' => $todo])
 
@@ -204,23 +205,23 @@
                                         </td>
                                         <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}
                                         </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
+                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}
+                                        </td>
                                         <td class="px-4 py-3 text-sm border border-gray-400">
                                             <div class="flex justify-start gap-2 text-md">
                                                 <button
                                                     class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
                                                     onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button"
-                                                            onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
-                                                            class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
-                                                            Delete
-                                                        </button>
-                                                        @include('modal.modal_delete')
-    
-                                                    </form>
+                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
+                                                    class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button"
+                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
+                                                        onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
+                                                        Delete
+                                                    </button>
+                                                </form>
                                             </div>
                                             @include('modal.modal_edit', ['todo' => $todo])
 
@@ -292,17 +293,16 @@
                                             <button
                                                 class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
                                                 onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button"
-                                                        onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
-                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
-                                                        Delete
-                                                    </button>
-                                                    @include('modal.modal_delete')
-
-                                                </form>
+                                            <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
+                                                class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button"
+                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
+                                                    onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </div>
                                         @include('modal.modal_edit', ['todo' => $todo])
 
@@ -373,18 +373,16 @@
                                             <button
                                                 class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
                                                 onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST" class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button"
-                                                        onclick="showDeleteModal({{ $todo->id }}, '{{ $todo->title }}')"
-                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white">
-                                                        Delete
-                                                    </button>
-                                                    @include('modal.modal_delete')
-
-                                                </form>
-                                                
+                                            <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
+                                                class="d-inline" id="delete-form-{{ $todo->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button"
+                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
+                                                    onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </div>
                                         @include('modal.modal_edit', ['todo' => $todo])
                                     </td>
@@ -429,12 +427,18 @@
         </div>
         <p class="text-center text-white text-sm md:text-md border-t">Copyright &copy; 2023, All Right Reserved</p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-        integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous">
-    </script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
+
     @if ($errors->any())
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -444,25 +448,123 @@
         </script>
     @endif
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
-       let selectedTodoId = null;
+        function confirmDelete(id, name) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                html: `Anda akan menghapus todo <strong>${name}</strong>`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`delete-form-${id}`).submit();
+                    Swal.fire({
+                        title: 'Menghapus...',
+                        html: 'Sedang memproses penghapusan',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                }
+            });
+        }
 
-function showDeleteModal(id, title) {
-    selectedTodoId = id;
-    document.getElementById('deleteItemName').textContent = title;
-    document.getElementById('deleteModal').classList.remove('hidden');
-}
+        $(document).ready(function() {
+            function checkTodoStatus() {
+                var currentDate = new Date();
+                currentDate.setHours(0, 0, 0, 0);
 
-function closeDeleteModal() {
-    selectedTodoId = null;
-    document.getElementById('deleteModal').classList.add('hidden');
-}
+                $('tbody tr').each(function() {
+                    var $row = $(this);
+                    var $statusBadge = $row.find('td:nth-child(3) span');
+                    var currentStatus = $statusBadge.text().trim();
 
-function submitDelete() {
-    if (selectedTodoId !== null) {
-        document.getElementById('delete-form-' + selectedTodoId).submit();
-    }
-}
+                    if (currentStatus !== 'completed') {
+                        var startDateStr = $row.find('td:nth-child(4)').text().trim();
+                        var endDateStr = $row.find('td:nth-child(5)').text().trim();
+                        var todoId = $row.find('button[onclick^="toggleModalEdit"]').attr('onclick').match(
+                            /\d+/)[0];
+
+                        var startDate = new Date(startDateStr);
+                        var endDate = new Date(endDateStr);
+                        startDate.setHours(0, 0, 0, 0);
+                        endDate.setHours(0, 0, 0, 0);
+
+                        if (currentStatus === 'pending' && currentDate >= startDate && currentDate <=
+                            endDate) {
+                            updateTodoStatus(todoId, 'in_progress', $statusBadge);
+                        } else if (currentDate > endDate) {
+                            updateTodoStatus(todoId, 'completed', $statusBadge);
+                        }
+                    }
+                });
+            }
+
+            function updateTodoStatus(todoId, newStatus, $statusElement) {
+                $.ajax({
+                    url: '/todos/' + todoId + '/status',
+                    type: 'PUT',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        status: newStatus
+                    },
+                    success: function(response) {
+                        updateStatusBadge($statusElement, newStatus);
+                        updateTableRowPosition($statusElement.closest('tr'), newStatus);
+                    },
+                    error: function(xhr) {
+                        console.error('Error updating status:', xhr.responseText);
+                    }
+                });
+            }
+
+            function updateStatusBadge($element, newStatus) {
+                $element.removeClass('bg-red-100 bg-yellow-100 bg-green-100')
+                    .removeClass('text-red-700 text-yellow-700 text-green-700')
+                    .text(newStatus);
+
+                var newClass = '';
+                switch (newStatus) {
+                    case 'pending':
+                        newClass = 'bg-red-100 text-red-700';
+                        break;
+                    case 'in_progress':
+                        newClass = 'bg-yellow-100 text-yellow-700';
+                        break;
+                    case 'completed':
+                        newClass = 'bg-green-100 text-green-700';
+                        break;
+                }
+                $element.addClass(newClass);
+            }
+
+            function updateTableRowPosition($row, newStatus) {
+                var $targetTable = $('#task');
+
+                if (newStatus === 'pending') {
+                    $targetTable = $('h1:contains("Belum Mulai")').closest('div').next().find('table');
+                } else if (newStatus === 'in_progress') {
+                    $targetTable = $('h1:contains("Sedang Berjalan")').closest('div').next().find('table');
+                } else if (newStatus === 'completed') {
+                    $targetTable = $('h1:contains("Selesai")').closest('div').next().find('table');
+                }
+
+                $row.detach().appendTo($targetTable.find('tbody'));
+            }
+
+            checkTodoStatus();
+        });
     </script>
 </body>
 
