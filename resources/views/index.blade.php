@@ -489,23 +489,36 @@
                     var $row = $(this);
                     var $statusBadge = $row.find('td:nth-child(3) span');
                     var currentStatus = $statusBadge.text().trim();
+                    var startDateStr = $row.find('td:nth-child(4)').text().trim();
+                    var endDateStr = $row.find('td:nth-child(5)').text().trim();
+                    var todoId = $row.find('button[onclick^="toggleModalEdit"]').attr('onclick').match(
+                        /\d+/)[0];
 
-                    if (currentStatus !== 'completed') {
-                        var startDateStr = $row.find('td:nth-child(4)').text().trim();
-                        var endDateStr = $row.find('td:nth-child(5)').text().trim();
-                        var todoId = $row.find('button[onclick^="toggleModalEdit"]').attr('onclick').match(
-                            /\d+/)[0];
+                    var startDate = new Date(startDateStr);
+                    var endDate = new Date(endDateStr);
+                    startDate.setHours(0, 0, 0, 0);
+                    endDate.setHours(0, 0, 0, 0);
 
-                        var startDate = new Date(startDateStr);
-                        var endDate = new Date(endDateStr);
-                        startDate.setHours(0, 0, 0, 0);
-                        endDate.setHours(0, 0, 0, 0);
+                    // Debugging
+                    console.log(`Todo ${todoId}:`, {
+                        currentStatus,
+                        startDate,
+                        endDate,
+                        currentDate
+                    });
 
-                        if (currentStatus === 'pending' && currentDate >= startDate && currentDate <=
-                            endDate) {
+                    // Logika update status yang lebih komprehensif
+                    if (currentDate >= startDate && currentDate <= endDate) {
+                        if (currentStatus !== 'in_progress') {
                             updateTodoStatus(todoId, 'in_progress', $statusBadge);
-                        } else if (currentDate > endDate) {
+                        }
+                    } else if (currentDate > endDate) {
+                        if (currentStatus !== 'completed') {
                             updateTodoStatus(todoId, 'completed', $statusBadge);
+                        }
+                    } else if (currentDate < startDate) {
+                        if (currentStatus !== 'pending') {
+                            updateTodoStatus(todoId, 'pending', $statusBadge);
                         }
                     }
                 });

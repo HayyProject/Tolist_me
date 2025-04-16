@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TodoController extends Controller
 {
@@ -20,61 +21,39 @@ class TodoController extends Controller
         return view('index', compact('todos', 'willStart', 'notStart', 'finished'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'title' => 'required|string|max:255',
-        'description' => 'required|string',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date|after_or_equal:start_date',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:pending,in_progress,completed',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
 
-    // Tentukan status berdasarkan tanggal
-    $currentDate = now()->format('Y-m-d');
-    $status = 'pending';
-    
-    if ($request->start_date <= $currentDate && $request->end_date >= $currentDate) {
-        $status = 'in_progress';
-    } elseif ($request->end_date < $currentDate) {
-        $status = 'completed';
+        if (Carbon::parse($validatedData['start_date'])->isToday()) {
+            $validatedData['status'] = 'in_progress';
+        }
+
+        Todo::create($validatedData);
+
+        return redirect()->route('todos.index')->with('success', 'Todo created successfully.');
     }
 
-    $todo = Todo::create(array_merge($validatedData, ['status' => $status]));
-
-    return redirect()->route('todos.index')->with('success', 'Todo created successfully.');
-}
-
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, Todo $todo)
     {
         $validatedData = $request->validate([
-            'title' => 'sometimes|required|string|max:255',
-            'description' => 'sometimes|required|string',
-            'status' => 'sometimes|required|in:pending,in_progress,completed',
-            'start_date' => 'sometimes|required|date',
-            'end_date' => 'sometimes|required|date|after_or_equal:start_date',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:pending,in_progress,completed',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
         ]);
 
-        // Jika tanggal diupdate, periksa status
-        if ($request->has('start_date') || $request->has('end_date')) {
-            $currentDate = now()->format('Y-m-d');
-            $startDate = $request->start_date ?? $todo->start_date;
-            $endDate = $request->end_date ?? $todo->end_date;
-            
-            if ($startDate <= $currentDate && $endDate >= $currentDate) {
-                $validatedData['status'] = 'in_progress';
-            } elseif ($endDate < $currentDate) {
-                $validatedData['status'] = 'completed';
-            }
-        }
-
         $todo->update($validatedData);
-
-        if ($request->ajax()) {
-            return response()->json(['success' => true]);
-        }
 
         return redirect()->route('todos.index')->with('success', 'Todo updated successfully.');
     }
