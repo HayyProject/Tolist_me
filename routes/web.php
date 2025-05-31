@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\authController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,17 @@ use App\Http\Controllers\TodoController;
 |
 */
 
-Route::get('/', [TodoController::class, 'index'])->name('todos.index');
+Route::redirect('/', '/home');
+Route::get('/home', [TodoController::class, 'home'])->name('todos.home');
+Route::get('/login', [TodoController::class, 'loginForm'])->name('todos.login');
+Route::get('/register', [TodoController::class, 'registerForm'])->name('todos.register');
+
+Route::post('/login', [authController::class, 'login',])->name('login');
+Route::post('/register', [authController::class, 'register'])->name('register');
+Route::post('/logout' ,[authController::class, 'logout'])->name('logout');
+
+
+
+
+
 Route::resource('todos', TodoController::class);

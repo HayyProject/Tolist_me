@@ -18,7 +18,14 @@ class Todo extends Model
         'status',
         'start_date',
         'end_date',
+        'user_id',
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
 }
+}
+

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'in_progress','completed'])->default('pending');
             $table->date('start_date');
             $table->date('end_date');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -12,420 +12,177 @@
 
 <body>
     @include('modal.modal_create')
-    <nav
-        class="flex md:justify-between justify-center bg-[#4291B0] text-white fixed top-0 w-full z-10 p-2 md:p-3 rounded-lg rounded-t-none">
-        <p class="hidden md:flex md:text-xl font-bold">ToList Me</p>
-        <div class="flex space-x-5 justify-center items-center">
-            <a href="#home" class="font-normal hover:font-semibold text-md lg:text-lg">Home</a>
-            <a href="#about" class="font-normal hover:font-semibold text-md lg:text-lg">About us</a>
-            <a href="#task" class="font-normal hover:font-semibold text-md lg:text-lg">Task</a>
+    <nav class=" w-full bg-white shadow border-b border-purple-600 ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="{{route('todos.home')}}" class="text-xl font-bold text-purple-700">ToDoApp</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    @auth
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition">Log out</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition">Login</a>
+                    @endauth
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div></div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+            <a href="#about" class="block py-2 text-gray-700 hover:text-purple-600">Tentang</a>
+            <a href="#features" class="block py-2 text-gray-700 hover:text-purple-600">Fitur</a>
+        </div>
     </nav>
-    <div class="container mx-auto p-3 mt-10 flex flex-col ">
-        <div class="flex flex-col md:flex-row md:justify-between items-center gap-5" id="home">
-            <div class="space-y-2 flex-col ">
-                <p class="text-sm lg:text-lg font-light font-sans">⭐ Start your productivity journey today</p>
-                <h1 class="text-lg lg:text-2xl font-semibold font-sans">Where every Task is a new Achievement</h1>
-                <p class="text-sm lg:text-lg font-light font-sans text text-justify">Welcome to your to-do list, where
-                    progress
-                    begins
-                    one task at a time. Organize your goals, stay inspired, and transform your day with small wins.
-                    Let’s
-                    start ticking things off and making things happen!</p>
-            </div>
-            <div>
-                <img src="{{ asset('images/buku.png') }}" alt="" class="w-full">
-            </div>
+    <div class="flex flex-col mt-5 container mx-auto">
+        <div class="flex flex-row justify-between items-center mb-6">
+            <h1 class="text-lg font-normal">Todo List Min</h1>
+            <button
+                class="px-4 py-2 rounded-full border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white  active:text-white text-sm md:text-md"
+                onclick="toggleModal()">Tambah Task</button>
         </div>
-        <div class="flex md:flex-row flex-col justify-center">
-            <div class="w-full bg-[#98DCEE] text-center text-gray-700 p-7 md:rounded-l-lg  space-y-2">
-                <p>1</p>
-                <h1 class="font-semibold md:text-lg">Clear Your Task</h1>
-                <p class="text-sm font-light">Set up task Table for your project tasks with customizable backgrounds.
-                </p>
-            </div>
-            <div class="w-full bg-[#FEC05D] text-center text-gray-700 p-7 md:rounded-r-lg  space-y-2">
-                <p>2</p>
-                <h1 class="font-semibold md:text-lg">Start Managing Tasks</h1>
-                <p class="text-sm font-light">Add tasks, organize them into lists, and track your progress.</p>
-            </div>
-        </div>
-        <div class="flex flex-col md:flex-row md:justify-between items-center md:space-x-15 mt-5 gap-5" id="about">
-            <div>
-                <h1 class="text-lg font-semibold mb-2"># About this To - Do</h1>
-                <p class="text-sm font-light text-justify lg:text-lg">This simple to-do list is designed to help you
-                    stay focused, organized, and motivated. It’s a space to plan your day, track progress, and celebrate
-                    every small win. Whether it’s a big project or a quick reminder, everything starts with writing it
-                    down.</p>
-            </div>
-            <div class="md:max-w-md w-full">
-                <img src="{{ asset('images/todo.png') }}" alt="" class="w-full">
-            </div>
-        </div>
-        <div class="w-full bg-[#4291B0] p-3 text-center text-white mt-5 rounded-lg">
-            <p class="text-sm md:text-lg">Okay Now Let’s Go to My To-Do</p>
-        </div>
-        <div class="flex flex-col mt-5">
-            <div class="flex flex-row justify-between items-center">
-                <h1 class="text-lg font-normal">Semua Tugas</h1>
-                <button
-                    class="px-4 py-2 rounded-full border border-gray-700 active:bg-gray-700 active:text-white text-sm md:text-md"
-                    onclick="toggleModal()">Tambah Task</button>
-            </div>
-
-
-            <div class="w-full overflow-hidden" id="task">
-                <div class="w-full overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
-                                <th class="px-4 py-3">Nama</th>
-                                <th class="px-4 py-3">Deskripsi</th>
-                                <th class="px-4 py-3">Status</th>
-                                <th class="px-4 py-3">Tanggal Mulai</th>
-                                <th class="px-4 py-3">Deadline</th>
-                                <th class="px-4 py-3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            @if (isset($todos) && count($todos) > 0)
-                                @foreach ($todos as $todo)
-                                    <tr class="text-gray-700 ">
-                                        <td class="px-4 py-3 border border-gray-400">
-                                            {{ $todo->title }}
-                                        </td>
-                                        <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">
-                                            @switch($todo->status)
-                                                @case('pending')
-                                                    <span
-                                                        class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg">
-                                                        {{ $todo->status }}
-                                                    </span>
-                                                @break
-
-                                                @case('in_progress')
-                                                    <span
-                                                        class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
-                                                        {{ $todo->status }}
-                                                    </span>
-                                                @break
-
-                                                @case('completed')
-                                                    <span
-                                                        class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
-                                                        {{ $todo->status }}
-                                                    </span>
-                                                @break
-                                            @endswitch
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">
-                                            <div class="flex justify-start gap-2 text-md">
-                                                <button
-                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-                                                    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-
-                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
-                                                    class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button"
-                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
-                                                        onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            @include('modal.modal_edit', ['todo' => $todo])
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr class="text-gray-700 ">
-                                    <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
-                                        ada/belum dibuat</td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
+    
+        <!-- Board Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Belum Mulai Board -->
+            <div class="bg-gray-100 rounded-lg shadow p-4">
+                <h2 class="text-lg font-medium mb-4 text-red-700">Belum Mulai</h2>
+                <div class="space-y-3">
+                    @if (isset($notStart) && count($notStart) > 0)
+                        @foreach ($notStart as $todo)
+                            <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-400">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-medium">{{ $todo->title }}</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full">
+                                        {{ $todo->status }}
+                                    </span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">{{ $todo->description }}</p>
+                                <div class="mt-3 text-xs text-gray-500">
+                                    <div>Mulai: {{ $todo->start_date }}</div>
+                                    <div>Deadline: {{ $todo->end_date }}</div>
+                                </div>
+                                <div class="flex justify-end gap-2 mt-3">
+                                    <button class="px-3 py-1 text-sm rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+                                        onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
+                                        class="d-inline" id="delete-form-{{ $todo->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button"
+                                            class="px-3 py-1 text-sm rounded-full border border-red-400 active:bg-red-400 active:text-white"
+                                            onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                @include('modal.modal_edit', ['todo' => $todo])
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="bg-white p-4 rounded-lg shadow text-center text-gray-500">
+                            Data belum ada/belum dibuat
+                        </div>
+                    @endif
                 </div>
             </div>
-            <h1 class="mt-5 text-lg font-normal">Belum Mulai</h1>
-            <div class="w-full overflow-hidden ">
-                <div class="w-full overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
-                                <th class="px-4 py-3">Nama</th>
-                                <th class="px-4 py-3">Deskripsi</th>
-                                <th class="px-4 py-3">Status</th>
-                                <th class="px-4 py-3">Tanggal Mulai</th>
-                                <th class="px-4 py-3">Deadline</th>
-                                <th class="px-4 py-3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            @if (isset($notStart) && count($notStart) > 0)
-                                @foreach ($notStart as $todo)
-                                    <tr class="text-gray-700 ">
-                                        <td class="px-4 py-3 border border-gray-400">
-                                            {{ $todo->title }}
-                                        </td>
-                                        <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">
-                                            @switch($todo->status)
-                                                @case('pending')
-                                                    <span
-                                                        class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg">
-                                                        {{ $todo->status }}
-                                                    </span>
-                                                @break
-
-                                                @case('in_progress')
-                                                    <span
-                                                        class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
-                                                        {{ $todo->status }}
-                                                    </span>
-                                                @break
-
-                                                @case('completed')
-                                                    <span
-                                                        class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
-                                                        {{ $todo->status }}
-                                                    </span>
-                                                @break
-                                            @endswitch
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border border-gray-400">
-                                            <div class="flex justify-start gap-2 text-md">
-                                                <button
-                                                    class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-                                                    onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
-                                                    class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button"
-                                                        class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
-                                                        onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            @include('modal.modal_edit', ['todo' => $todo])
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr class="text-gray-700 ">
-                                    <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
-                                        ada/belum dibuat</td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
+    
+            <!-- Sedang Berjalan Board -->
+            <div class="bg-gray-100 rounded-lg shadow p-4">
+                <h2 class="text-lg font-medium mb-4 text-yellow-700">Sedang Berjalan</h2>
+                <div class="space-y-3">
+                    @if (isset($willStart) && count($willStart) > 0)
+                        @foreach ($willStart as $todo)
+                            <div class="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-400">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-medium">{{ $todo->title }}</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold text-yellow-700 bg-yellow-100 rounded-full">
+                                        {{ $todo->status }}
+                                    </span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">{{ $todo->description }}</p>
+                                <div class="mt-3 text-xs text-gray-500">
+                                    <div>Mulai: {{ $todo->start_date }}</div>
+                                    <div>Deadline: {{ $todo->end_date }}</div>
+                                </div>
+                                <div class="flex justify-end gap-2 mt-3">
+                                    <button class="px-3 py-1 text-sm rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+                                        onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
+                                        class="d-inline" id="delete-form-{{ $todo->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button"
+                                            class="px-3 py-1 text-sm rounded-full border border-red-400 active:bg-red-400 active:text-white"
+                                            onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                @include('modal.modal_edit', ['todo' => $todo])
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="bg-white p-4 rounded-lg shadow text-center text-gray-500">
+                            Data belum ada/belum dibuat
+                        </div>
+                    @endif
+                </div>
+            </div>
+    
+            <!-- Selesai Board -->
+            <div class="bg-gray-100 rounded-lg shadow p-4">
+                <h2 class="text-lg font-medium mb-4 text-green-700">Selesai</h2>
+                <div class="space-y-3">
+                    @if (isset($finished) && count($finished) > 0)
+                        @foreach ($finished as $todo)
+                            <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-400">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-medium">{{ $todo->title }}</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">
+                                        {{ $todo->status }}
+                                    </span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">{{ $todo->description }}</p>
+                                <div class="mt-3 text-xs text-gray-500">
+                                    <div>Mulai: {{ $todo->start_date }}</div>
+                                    <div>Deadline: {{ $todo->end_date }}</div>
+                                </div>
+                                <div class="flex justify-end gap-2 mt-3">
+                                    <button class="px-3 py-1 text-sm rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
+                                        onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
+                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
+                                        class="d-inline" id="delete-form-{{ $todo->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button"
+                                            class="px-3 py-1 text-sm rounded-full border border-red-400 active:bg-red-400 active:text-white"
+                                            onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                @include('modal.modal_edit', ['todo' => $todo])
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="bg-white p-4 rounded-lg shadow text-center text-gray-500">
+                            Data belum ada/belum dibuat
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
-        <h1 class="mt-5 text-lg font-normal">Sedang Berjalan</h1>
-        <div class="w-full overflow-hidden ">
-            <div class="w-full overflow-x-auto">
-                <table class="w-full">
-                    <thead>
-                        <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
-                            <th class="px-4 py-3">Nama</th>
-                            <th class="px-4 py-3">Deskripsi</th>
-                            <th class="px-4 py-3">Status</th>
-                            <th class="px-4 py-3">Tanggal Mulai</th>
-                            <th class="px-4 py-3">Deadline</th>
-                            <th class="px-4 py-3">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        @if (isset($willStart) && count($willStart) > 0)
-                            @foreach ($willStart as $todo)
-                                <tr class="text-gray-700 ">
-                                    <td class="px-4 py-3 border border-gray-400">
-                                        {{ $todo->title }}
-                                    </td>
-                                    <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
-                                    </td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">
-                                        @switch($todo->status)
-                                            @case('pending')
-                                                <span
-                                                    class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg">
-                                                    {{ $todo->status }}
-                                                </span>
-                                            @break
-
-                                            @case('in_progress')
-                                                <span
-                                                    class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
-                                                    {{ $todo->status }}
-                                                </span>
-                                            @break
-
-                                            @case('completed')
-                                                <span
-                                                    class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
-                                                    {{ $todo->status }}
-                                                </span>
-                                            @break
-                                        @endswitch
-                                    </td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}</td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">
-                                        <div class="flex justify-start gap-2 text-md">
-                                            <button
-                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-                                                onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                            <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
-                                                class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button"
-                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
-                                                    onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                        @include('modal.modal_edit', ['todo' => $todo])
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr class="text-gray-700 ">
-                                <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
-                                    ada/belum dibuat</td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <h1 class="mt-5 text-lg font-normal">Selesai</h1>
-        <div class="w-full overflow-hidden ">
-            <div class="w-full overflow-x-auto">
-                <table class="w-full">
-                    <thead>
-                        <tr class="text-md font-semibold tracking-wide text-left text-gray-600 text-sm">
-                            <th class="px-4 py-3">Nama</th>
-                            <th class="px-4 py-3">Deskripsi</th>
-                            <th class="px-4 py-3">Status</th>
-                            <th class="px-4 py-3">Tanggal Mulai</th>
-                            <th class="px-4 py-3">Deadline</th>
-                            <th class="px-4 py-3">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        @if (isset($finished) && count($finished) > 0)
-                            @foreach ($finished as $todo)
-                                <tr class="text-gray-700 ">
-                                    <td class="px-4 py-3 border border-gray-400 ">
-                                        {{ $todo->title }}
-                                    </td>
-                                    <td class="px-4 py-3 text-ms  border border-gray-400">{{ $todo->description }}
-                                    </td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">
-                                        @switch($todo->status)
-                                            @case('pending')
-                                                <span
-                                                    class="px-3 py-2 font-semibold leading-tight text-red-700 bg-red-100 rounded-lg ">
-                                                    {{ $todo->status }}
-                                                </span>
-                                            @break
-
-                                            @case('in_progress')
-                                                <span
-                                                    class="px-3 py-2 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-lg">
-                                                    {{ $todo->status }}
-                                                </span>
-                                            @break
-
-                                            @case('completed')
-                                                <span
-                                                    class="px-3 py-2 font-semibold leading-tight text-green-700 bg-green-100 rounded-lg">
-                                                    {{ $todo->status }}
-                                                </span>
-                                            @break
-                                        @endswitch
-                                    </td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->start_date }}</td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">{{ $todo->end_date }}</td>
-                                    <td class="px-4 py-3 text-sm border border-gray-400">
-                                        <div class="flex justify-start gap-2 text-md">
-                                            <button
-                                                class="px-4 py-2 rounded-full border border-[#4291B0] active:bg-[#4291B0] active:text-white"
-                                                onclick="toggleModalEdit({{ $todo->id }})">Edit</button>
-                                            <form action="{{ route('todos.destroy', $todo->id) }}" method="POST"
-                                                class="d-inline" id="delete-form-{{ $todo->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button"
-                                                    class="px-4 py-2 rounded-full border border-red-400 active:bg-red-400 active:text-white"
-                                                    onclick="confirmDelete({{ $todo->id }}, '{{ $todo->title }}')">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                        @include('modal.modal_edit', ['todo' => $todo])
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr class="text-gray-700 ">
-                                <td class="px-4 py-3 border border-gray-400 text-center" colspan="6">Data belum
-                                    ada/belum dibuat</td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="w-full p-4 lg:py-5  bg-[#4291B0] mt-5">
-        <div class="flex flex-col md:flex-row md:justify-between gap-5 md:gap-10 mditems-center xl:px-15">
-            <div class="flex flex-col text-white text-md space-y-2 ">
-                <h1 class="font-semibold text-lg">ToList Me</h1>
-                <p class="">This simple to-do list is designed to help you stay focused, organized, and
-                    motivated. It’s a space to plan your day, track progress, and celebrate every small win. Whether
-                    it’s a big project or a quick reminder, everything starts with writing it down.</p>
-            </div>
-            <div class="flex flex-col md:flex-row space-x-5 md:items-center md:mb-5 gap-5 ">
-                <div class="flex flex-col text-start text-white gap-3">
-                    <h1 class="font-semibold text-lg">Company</h1>
-                    <p>About</p>
-                    <p>Blog</p>
-                    <p>Contact</p>
-                </div>
-                <div class="flex flex-col md:flex-row space-x-5 ">
-                    <div class="flex flex-col text-start text-white gap-3">
-                        <h1 class="font-semibold text-lg">Legal</h1>
-                        <p>Privacy</p>
-                        <p>Terms</p>
-                        <p>Security</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p class="text-center text-white text-sm md:text-md border-t">Copyright &copy; 2023, All Right Reserved</p>
     </div>
     @if (session('success'))
         <script>
@@ -499,13 +256,7 @@
                     startDate.setHours(0, 0, 0, 0);
                     endDate.setHours(0, 0, 0, 0);
 
-                    // Debugging
-                    console.log(`Todo ${todoId}:`, {
-                        currentStatus,
-                        startDate,
-                        endDate,
-                        currentDate
-                    });
+
 
                     // Logika update status yang lebih komprehensif
                     if (currentDate >= startDate && currentDate <= endDate) {
